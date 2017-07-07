@@ -107,7 +107,7 @@ module Blacklight::Marc::Indexer::Formats
       field007hasC
     end
 
-    def self.map_leader(f_000,field007hasC,vals,record)
+    def self.map_leader(f_000='C',field007hasC,vals,record)
       f_000 = f_000.upcase
       case
       when (f_000.start_with? 'C')
