@@ -1,5 +1,5 @@
 require 'library_stdnums'
- require 'traject/null_writer'
+require 'traject/null_writer'
 require 'traject/macros/marc21_semantics'
  
 require 'traject/macros/marc_format_classifier'
@@ -28,7 +28,8 @@ class Blacklight::Marc::Indexer < Traject::Indexer
       end
       provide "solr_writer.commit_on_close", "true"
       provide "solr_writer.thread_pool", 1
-      provide "solr_writer.batch_size", 100
+      provide "solr_writer.batch_size", 1000
+      provide "marc4j_reader.permissive", true
       provide "writer_class_name", "Traject::SolrJsonWriter"
       provide 'processing_thread_pool', 1
       provide "log.batch_size", 10_000
