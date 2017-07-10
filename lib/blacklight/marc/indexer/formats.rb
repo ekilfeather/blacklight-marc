@@ -140,7 +140,11 @@ module Blacklight::Marc::Indexer::Formats
           vals << ((field007hasC) ? "eBook" : "Book")
         elsif f_000 == 'AS' 
           # Look in 008 to determine what type of Continuing Resource
+          begin
           format_code = Traject::Macros::Marc21.extract_marc_from(record, "008[21]", first: true, default: "").first.upcase
+          rescue
+            format_code == ''
+          end
           if format_code == 'N'
             vals << 'Newspaper'
           elsif format_code == 'P'
